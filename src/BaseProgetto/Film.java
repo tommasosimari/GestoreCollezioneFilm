@@ -4,6 +4,8 @@ import BaseProgetto.Enum.Valutazione;
 import BaseProgetto.Enum.Stato;
 import BaseProgetto.Enum.GenereCinematografico;
 
+import java.util.Objects;
+
 public class Film {
 
     private String titolo;
@@ -91,5 +93,18 @@ public class Film {
                 ", stato=" + stato +
                 ", valutazione=" + valutazione +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Film film)) return false;
+        return Objects.equals(titolo, film.titolo) && Objects.equals(regista, film.regista) &&
+                Objects.equals(anno, film.anno) && genereCinematografico == film.genereCinematografico &&
+                stato == film.stato && valutazione == film.valutazione;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(titolo, regista, anno, genereCinematografico, stato, valutazione);
     }
 }
