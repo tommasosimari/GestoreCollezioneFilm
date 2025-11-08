@@ -10,29 +10,18 @@ public class Film {
 
     private String titolo;
     private String regista;
-    private String anno;
+    private Integer anno;
     private GenereCinematografico genereCinematografico;
     private Stato stato;
     private Valutazione valutazione;
 
-    public Film(String titolo, String regista, String anno, GenereCinematografico genereCinematografico, Stato stato, Valutazione valutazione) {
-        this.titolo = titolo;
-        this.regista = regista;
-        this.anno = anno;
-        this.genereCinematografico = genereCinematografico;
-        this.stato = stato;
-        this.valutazione = valutazione;
-        System.out.println("Film creato");
-    }
-
-    public Film(String titolo, String regista, String anno, GenereCinematografico genereCinematografico) {
-        this.titolo = titolo;
-        this.regista = regista;
-        this.anno = anno;
-        this.genereCinematografico = genereCinematografico;
-        this.stato = Stato.DA_VEDERE;
-        this.valutazione = Valutazione.NA;
-        System.out.println("Film creato");
+    private Film(Builder builder) {
+        this.titolo = builder.titolo;
+        this.regista = builder.regista;
+        this.anno = builder.anno;
+        this.genereCinematografico = builder.genereCinematografico;
+        this.stato = builder.stato;
+        this.valutazione = builder.valutazione;
     }
 
     public String getTitolo() {
@@ -51,11 +40,11 @@ public class Film {
         this.regista = regista;
     }
 
-    public String getAnno() {
+    public Integer getAnno() {
         return anno;
     }
 
-    public void setAnno(String anno) {
+    public void setAnno(Integer anno) {
         this.anno = anno;
     }
 
@@ -106,5 +95,51 @@ public class Film {
     @Override
     public int hashCode() {
         return Objects.hash(titolo, regista, anno, genereCinematografico, stato, valutazione);
+    }
+
+
+    public static class Builder {
+
+        // Qui indichiamo i campi obbligatori
+        private String titolo;
+        private String regista;
+
+        // Qui indichiamo i valori di default che inseriamo se non specificati
+        private Integer anno = Integer.valueOf("N/A");
+        private GenereCinematografico genereCinematografico = GenereCinematografico.ALTRO_O_IBRIDI;
+        private Stato stato = Stato.DA_VEDERE;
+        private Valutazione valutazione = Valutazione.NA;
+
+        // Costruttore del Builder obbligatorio
+        public Builder(String titolo, String regista) {
+            this.titolo = titolo;
+            this.regista = regista;
+        }
+
+        // Metodi "setter" per gli attributi non obbligatori da aggiungere in seguito. Il return serve alla concatenazione.
+        public Builder setAnno(Integer anno) {
+            this.anno = anno;
+            return this;
+        }
+
+        public Builder setGenere(GenereCinematografico genere) {
+            this.genereCinematografico = genere;
+            return this;
+        }
+
+        public Builder setStato(Stato stato) {
+            this.stato = stato;
+            return this;
+        }
+
+        public Builder setValutazione(Valutazione valutazione) {
+            this.valutazione = valutazione;
+            return this;
+        }
+
+        // Il metodo finale crea l'oggetto completo Film tramite il costruttore esterno.
+        public Film build() {
+            return new Film(this);
+        }
     }
 }
