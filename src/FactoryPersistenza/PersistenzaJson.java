@@ -12,11 +12,21 @@ import java.util.List;
 
 public class PersistenzaJson implements PersistenzaIF{
 
-    private static final String file = "collezione_film.json";
+    private String file;
     private Gson gson;
 
     public PersistenzaJson() {
-        // Rende l'output JSON leggibile
+        this.file = "collezione_film.json";
+        this.gson = new GsonBuilder().setPrettyPrinting().create();
+    }
+
+    public PersistenzaJson (String nomeFile){
+        this.file = nomeFile;
+        this.gson = new GsonBuilder().setPrettyPrinting().create();
+    }
+
+    public PersistenzaJson(File file_path){
+        this.file = file_path.getPath();
         this.gson = new GsonBuilder().setPrettyPrinting().create();
     }
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+
+<GridPane hgap="10" vgap="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FilmDialogController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <Label text="Titolo:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TextField fx:id="titoloField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+    <Label text="Regista:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="registaField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <Label text="Anno:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="annoField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Label text="Genere:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <ComboBox fx:id="genereBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <Label text="Stato:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <ComboBox fx:id="statoBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+    <Label text="Valutazione:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <ComboBox fx:id="valutazioneBox" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+    <HBox alignment="BOTTOM_RIGHT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.columnSpan="2">
+        <Button fx:id="okButton" onAction="#onOk" text="OK" />
+        <Button fx:id="annullaButton" onAction="#onAnnulla" text="Annulla" />
+    </HBox>
+</GridPane>

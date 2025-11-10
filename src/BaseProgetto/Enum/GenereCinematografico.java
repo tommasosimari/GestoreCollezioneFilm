@@ -9,6 +9,7 @@ public enum GenereCinematografico {
     FANTASY,
     GIALLO,
     ROMANTICO,
+    DRAMMATICO,
     ALTRO_O_IBRIDI;
 
 }

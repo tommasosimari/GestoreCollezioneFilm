@@ -1,0 +1,74 @@
+[
+  {
+    "titolo": "Mamma, ho perso l\u0027aereo",
+    "regista": "Chris Columbus",
+    "anno": 1990,
+    "genereCinematografico": "COMMEDIA",
+    "stato": "VISTO",
+    "valutazione": "CINQUE_STELLE"
+  },
+  {
+    "titolo": "Titanic",
+    "regista": "James Cameron",
+    "anno": 1997,
+    "genereCinematografico": "ROMANTICO",
+    "stato": "IN_VISIONE",
+    "valutazione": "NA"
+  },
+  {
+    "titolo": "Una poltrona per due",
+    "regista": "John Landis",
+    "anno": 1983,
+    "genereCinematografico": "COMMEDIA",
+    "stato": "DA_VEDERE",
+    "valutazione": "NA"
+  },
+  {
+    "titolo": "La La Land",
+    "regista": "Damien Chazelle",
+    "anno": 2016,
+    "genereCinematografico": "ROMANTICO",
+    "stato": "DA_VEDERE",
+    "valutazione": "NA"
+  },
+  {
+    "titolo": "Le cronache di Narnia - Il leone, la strega e l\u0027armadio",
+    "regista": "Andrew Adamson",
+    "anno": 2005,
+    "genereCinematografico": "FANTASY",
+    "stato": "DA_VEDERE",
+    "valutazione": "NA"
+  },
+  {
+    "titolo": "L\u0027uomo che sussurrava ai cavalli",
+    "regista": "Robert Redford",
+    "anno": 1998,
+    "genereCinematografico": "ALTRO_O_IBRIDI",
+    "stato": "DA_VEDERE",
+    "valutazione": "NA"
+  },
+  {
+    "titolo": "Spirit - Cavallo selvaggio",
+    "regista": "Kelly Asbury",
+    "anno": 2002,
+    "genereCinematografico": "AVVENTURA",
+    "stato": "DA_VEDERE",
+    "valutazione": "NA"
+  },
+  {
+    "titolo": "Il Signore degli Anelli",
+    "regista": "Peter Jackson",
+    "anno": 2001,
+    "genereCinematografico": "FANTASY",
+    "stato": "DA_VEDERE",
+    "valutazione": "NA"
+  },
+  {
+    "titolo": "Inception",
+    "regista": "Christopher Nolan",
+    "anno": 2010,
+    "genereCinematografico": "ALTRO_O_IBRIDI",
+    "stato": "VISTO",
+    "valutazione": "NA"
+  }
+]

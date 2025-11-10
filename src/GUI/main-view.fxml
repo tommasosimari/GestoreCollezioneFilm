@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="GUI.FilmController">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <MenuItem text="Carica (JSON)" onAction="#onCaricaJson"/>
+                <MenuItem text="Salva (JSON)" onAction="#onSalvaJson"/>
+                <MenuItem text="Carica (CSV)" onAction="#onCaricaCsv"/>
+                <MenuItem text="Salva (CSV)" onAction="#onSalvaCsv"/>
+
+            </Menu>
+            <Menu text="Modifica">
+                <MenuItem text="Aggiungi Film..." onAction="#onAggiungiFilm"/>
+                <MenuItem text="Rimuovi Selezionato" onAction="#onRimuoviFilm"/>
+                <MenuItem text="Modifica Selezionato" onAction="#onModificaFilm"/>
+            </Menu>
+            <Menu text="Ordina">
+                <MenuItem text="Per Titolo" onAction="#onOrdinaPerTitolo"/>
+                <MenuItem text="Per Anno" onAction="#onOrdinaPerAnno"/>
+                <MenuItem text="Per Genere" onAction="#onOrdinaPerGenere"/>
+                <MenuItem text="Per Valutazione" onAction="#onOrdinaPerValutazione"/>
+                <MenuItem text="Per Stato" onAction="#onOrdinaPerStato"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <TableView fx:id="tabellaFilm">
+            <columns>
+                <TableColumn fx:id="colTitolo" prefWidth="200.0" text="Titolo"/>
+                <TableColumn fx:id="colRegista" prefWidth="150.0" text="Regista"/>
+                <TableColumn fx:id="colAnno" prefWidth="75.0" text="Anno"/>
+                <TableColumn fx:id="colGenere" prefWidth="120.0" text="Genere"/>
+                <TableColumn fx:id="colStato" prefWidth="100.0" text="Stato"/>
+                <TableColumn fx:id="colValutazione" prefWidth="100.0" text="Valutazione"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

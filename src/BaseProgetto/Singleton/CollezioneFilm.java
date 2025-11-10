@@ -25,30 +25,35 @@ public class CollezioneFilm {
     private StrategyIF strategy = new StrategyStato();
 
     //Integro la parte della persistenza
-    private PersistenzaIF persistenza;
+    private PersistenzaIF persistenza = new PersistenzaJson();
 
     //Il costruttore è privato così da non poter creare nuove istanze con nuove new.
     //Quel new viene usato alla creazione del singleton e non verrà più richiamato.
     //Update: Aggiungo il controllo con la persistenza, in questo modo quando ho bisogno di una collezione,
     //se esiste, ce l'ho già caricata.
     private CollezioneFilm() {
-        String tipo_salvataggio = "JSON";
+        this.ListaFilm = new ArrayList<>();
+    }
 
-        this.persistenza = FactoryPersistenza.Persistenza.creaRepository(tipo_salvataggio);
-        List<Film> listaCaricata;
+    public void caricaCollezione(){
         try {
-            listaCaricata = this.persistenza.carica();
-            System.out.println("Dati caricati con successo da: " + tipo_salvataggio);
+            List<Film> listaCaricata = this.persistenza.carica();
+            this.ListaFilm.clear(); // Svuota la lista corrente
+            this.ListaFilm.addAll(listaCaricata); // Aggiungi i film caricati
+            System.out.println("Dati caricati con successo.");
         } catch (Exception e) {
-            System.err.println("Impossibile caricare i dati. Restituisco una lista vuota.");
+            System.err.println("Impossibile caricare i dati. La lista rimane vuota.");
             e.printStackTrace();
-            listaCaricata = new ArrayList<>();
+            this.ListaFilm.clear(); // La svuoto per sicurezza
         }
-        this.ListaFilm = listaCaricata;
     }
 
     public void setPersistenza(String tipo) {
         this.persistenza = FactoryPersistenza.Persistenza.creaRepository(tipo);
+    }
+
+    public void setPersistenza(PersistenzaIF persistenza){
+        this.persistenza = persistenza;
     }
 
     public void salvaCollezione() {
@@ -73,12 +78,7 @@ public class CollezioneFilm {
         this.strategy = strategy;
     }
 
-    public void aggiungiFilm(String titolo, String regista, Integer anno, GenereCinematografico genere, Stato stato, Valutazione valutazione) {
-        Film film = new Film.Builder(titolo, regista).setAnno(anno).setGenere(genere).setStato(stato).setValutazione(valutazione).build();
-        aggiungiFilm(film);
-    }
-
-    void aggiungiFilm(String titolo, String regista) {
+    public void aggiungiFilm(String titolo, String regista) {
         Film film = new Film.Builder(titolo, regista).build();
         aggiungiFilm(film);
     }
@@ -103,7 +103,8 @@ public class CollezioneFilm {
      }
 
     public List<Film> getTuttiIFilm() {
-        return new ArrayList<>(ListaFilm);
+        System.out.println(ListaFilm);
+        return ListaFilm;
     }
 
     public List<Film> cercaPerTitolo(String titolo) {
@@ -126,10 +127,10 @@ public class CollezioneFilm {
         return filmPerAnno;
     }
 
-    public List<Film> cercaPerGenere(String genere) {
+    public List<Film> cercaPerGenere(GenereCinematografico genere) {
         List<Film> filmPerGenere = new ArrayList<>();
         for (Film film : ListaFilm) {
-            if (film.getGenereCinematografico().toString().equalsIgnoreCase(genere)) {
+            if (film.getGenereCinematografico() == genere) {
                 filmPerGenere.add(film);
             }
         }
@@ -146,20 +147,20 @@ public class CollezioneFilm {
         return filmPerRegista;
     }
 
-    public List<Film> cercaPerStato(String stato) {
+    public List<Film> cercaPerStato(Stato stato) {
         List<Film> filmPerStato = new ArrayList<>();
         for (Film film : ListaFilm) {
-            if (film.getStato().toString().equalsIgnoreCase(stato)) {
+            if (film.getStato() == stato) {
                 filmPerStato.add(film);
             }
         }
         return filmPerStato;
     }
 
-    public List<Film> cercaPerValutazione(String valutazione) {
+    public List<Film> cercaPerValutazione(Valutazione valutazione) {
         List<Film> filmPerValutazione = new ArrayList<>();
         for (Film film : ListaFilm) {
-            if (film.getValutazione().toString().equalsIgnoreCase(valutazione)) {
+            if (film.getValutazione() == valutazione) {
                 filmPerValutazione.add(film);
             }
         }
@@ -169,6 +170,15 @@ public class CollezioneFilm {
     public List<Film> getFilmOrdinati() {
         List<Film> listaOrdinata = this.strategy.ordina(ListaFilm);
         return listaOrdinata;
+    }
+
+    public CollezioneFilm svuota(){
+        this.ListaFilm.clear();
+        return ListaUnica;
+    }
+
+    public static void Main(String[] args) {
+        System.out.println("hello");
     }
 
 }

@@ -105,7 +105,7 @@ public class Film {
         private String regista;
 
         // Qui indichiamo i valori di default che inseriamo se non specificati
-        private Integer anno = Integer.valueOf("N/A");
+        private Integer anno = null;
         private GenereCinematografico genereCinematografico = GenereCinematografico.ALTRO_O_IBRIDI;
         private Stato stato = Stato.DA_VEDERE;
         private Valutazione valutazione = Valutazione.NA;
