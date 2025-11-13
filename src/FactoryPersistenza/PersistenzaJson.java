@@ -47,7 +47,6 @@ public class PersistenzaJson implements PersistenzaIF{
             // Gson converte il testo JSON negli oggetti Java che vogliamo
             List<Film> filmList = gson.fromJson(reader, tipoLista);
 
-            // Qui controlliamo se il file è vuoto
             if (filmList == null) {
                 return new ArrayList<>();
             }

@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-//Questa classe gestisce la collezione di film e serve ad assicurarsi una sola istanza della collezione in tutta
-// l'applicazione.
+//Questa classe gestisce la collezione di film e serve ad assicurarsi una sola istanza
+// della collezione in tutta l'applicazione.
 public class CollezioneFilm {
 
     //Questa è l'istanza che verrà restituira; è statica e privata.
@@ -24,13 +24,11 @@ public class CollezioneFilm {
     //Di default imposto l'ordinamento per Stato
     private StrategyIF strategy = new StrategyStato();
 
-    //Integro la parte della persistenza
     private PersistenzaIF persistenza = new PersistenzaJson();
 
     //Il costruttore è privato così da non poter creare nuove istanze con nuove new.
     //Quel new viene usato alla creazione del singleton e non verrà più richiamato.
-    //Update: Aggiungo il controllo con la persistenza, in questo modo quando ho bisogno di una collezione,
-    //se esiste, ce l'ho già caricata.
+    //Update: Aggiungo il controllo con la persistenza
     private CollezioneFilm() {
         this.ListaFilm = new ArrayList<>();
     }
@@ -38,13 +36,13 @@ public class CollezioneFilm {
     public void caricaCollezione(){
         try {
             List<Film> listaCaricata = this.persistenza.carica();
-            this.ListaFilm.clear(); // Svuota la lista corrente
-            this.ListaFilm.addAll(listaCaricata); // Aggiungi i film caricati
+            this.ListaFilm.clear();
+            this.ListaFilm.addAll(listaCaricata);
             System.out.println("Dati caricati con successo.");
         } catch (Exception e) {
             System.err.println("Impossibile caricare i dati. La lista rimane vuota.");
             e.printStackTrace();
-            this.ListaFilm.clear(); // La svuoto per sicurezza
+            this.ListaFilm.clear();
         }
     }
 
@@ -66,7 +64,8 @@ public class CollezioneFilm {
         }
     }
 
-    // Questo è il metodo statico pubblico che tutti useranno per ottenere l'unica istanza della classe.
+    //Questo è il metodo statico pubblico che tutti useranno per ottenere l'unica istanza
+    // della classe. è l'if centrale del singleton.
     public static CollezioneFilm getCollezione() {
         if (ListaUnica == null) {
             ListaUnica = new CollezioneFilm();
@@ -103,7 +102,7 @@ public class CollezioneFilm {
      }
 
     public List<Film> getTuttiIFilm() {
-        System.out.println(ListaFilm);
+        //System.out.println(ListaFilm);
         return ListaFilm;
     }
 
@@ -168,17 +167,12 @@ public class CollezioneFilm {
     }
 
     public List<Film> getFilmOrdinati() {
-        List<Film> listaOrdinata = this.strategy.ordina(ListaFilm);
-        return listaOrdinata;
+        List<Film> listaOrdinataS = this.strategy.ordina(ListaFilm);
+        return listaOrdinataS;
     }
 
     public CollezioneFilm svuota(){
         this.ListaFilm.clear();
         return ListaUnica;
     }
-
-    public static void Main(String[] args) {
-        System.out.println("hello");
-    }
-
 }

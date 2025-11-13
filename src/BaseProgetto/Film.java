@@ -100,23 +100,21 @@ public class Film {
 
     public static class Builder {
 
-        // Qui indichiamo i campi obbligatori
+        //valori obbligatori
         private String titolo;
         private String regista;
 
-        // Qui indichiamo i valori di default che inseriamo se non specificati
+        //valori di default
         private Integer anno = null;
         private GenereCinematografico genereCinematografico = GenereCinematografico.ALTRO_O_IBRIDI;
         private Stato stato = Stato.DA_VEDERE;
         private Valutazione valutazione = Valutazione.NA;
 
-        // Costruttore del Builder obbligatorio
         public Builder(String titolo, String regista) {
             this.titolo = titolo;
             this.regista = regista;
         }
 
-        // Metodi "setter" per gli attributi non obbligatori da aggiungere in seguito. Il return serve alla concatenazione.
         public Builder setAnno(Integer anno) {
             this.anno = anno;
             return this;
@@ -137,7 +135,6 @@ public class Film {
             return this;
         }
 
-        // Il metodo finale crea l'oggetto completo Film tramite il costruttore esterno.
         public Film build() {
             return new Film(this);
         }

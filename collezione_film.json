@@ -4,15 +4,15 @@
     "regista": "Chris Columbus",
     "anno": 1990,
     "genereCinematografico": "COMMEDIA",
-    "stato": "VISTO",
-    "valutazione": "CINQUE_STELLE"
+    "stato": "DA_VEDERE",
+    "valutazione": "NA"
   },
   {
     "titolo": "Titanic",
     "regista": "James Cameron",
     "anno": 1997,
     "genereCinematografico": "ROMANTICO",
-    "stato": "IN_VISIONE",
+    "stato": "DA_VEDERE",
     "valutazione": "NA"
   },
   {
@@ -56,19 +56,27 @@
     "valutazione": "NA"
   },
   {
-    "titolo": "Il Signore degli Anelli",
-    "regista": "Peter Jackson",
-    "anno": 2001,
-    "genereCinematografico": "FANTASY",
-    "stato": "DA_VEDERE",
-    "valutazione": "NA"
+    "titolo": "La vita è bella",
+    "regista": "Roberto Benigni",
+    "anno": 1990,
+    "genereCinematografico": "ROMANTICO",
+    "stato": "VISTO",
+    "valutazione": "QUATTRO_STELLE"
   },
   {
-    "titolo": "Inception",
-    "regista": "Christopher Nolan",
-    "anno": 2010,
-    "genereCinematografico": "ALTRO_O_IBRIDI",
+    "titolo": "Cado dalle nubi",
+    "regista": "Non lo so",
+    "anno": 2009,
+    "genereCinematografico": "COMMEDIA",
     "stato": "VISTO",
-    "valutazione": "NA"
+    "valutazione": "CINQUE_STELLE"
+  },
+  {
+    "titolo": "Test",
+    "regista": "test",
+    "anno": 2100,
+    "genereCinematografico": "GIALLO",
+    "stato": "IN_VISIONE",
+    "valutazione": "DUE_STELLE"
   }
 ]

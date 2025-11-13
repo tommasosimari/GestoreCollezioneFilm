@@ -1,8 +1,8 @@
-Titolo,Regista,Anno,GenereCinematografico,Stato,Valutazione
-"Mamma, ho perso l'aereo",Chris Columbus,1990,COMMEDIA,DA_VEDERE,NA
-Titanic,James Cameron,1997,ROMANTICO,DA_VEDERE,NA
-"Una poltrona per due",John Landis,1983,COMMEDIA,DA_VEDERE,NA
-La La Land,Damien Chazelle,2016,ROMANTICO,DA_VEDERE,NA
-"Le cronache di Narnia - Il leone, la strega e l'armadio",Andrew Adamson,2005,FANTASY,DA_VEDERE,NA
-"L'uomo che sussurrava ai cavalli",Robert Redford,1998,ALTRO_O_IBRIDI,DA_VEDERE,NA
-Spirit - Cavallo selvaggio,Kelly Asbury,2002,AVVENTURA,DA_VEDERE,NA
+"Titolo","Regista","Anno","Genere","Stato","Valutazione"
+"Mamma, ho perso l'aereo","Chris Columbus","1990","COMMEDIA","DA_VEDERE","NA"
+"Titanic","James Cameron","1997","ROMANTICO","DA_VEDERE","NA"
+"Una poltrona per due","John Landis","1983","COMMEDIA","DA_VEDERE","NA"
+"La La Land","Damien Chazelle","2016","ROMANTICO","DA_VEDERE","NA"
+"Le cronache di Narnia - Il leone, la strega e l'armadio","Andrew Adamson","2005","FANTASY","DA_VEDERE","NA"
+"L'uomo che sussurrava ai cavalli","Robert Redford","1998","ALTRO_O_IBRIDI","DA_VEDERE","NA"
+"Spirit - Cavallo selvaggio","Kelly Asbury","2002","AVVENTURA","DA_VEDERE","NA"

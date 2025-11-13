@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="GUI.FilmController">
@@ -33,15 +32,35 @@
         </MenuBar>
     </top>
     <center>
-        <TableView fx:id="tabellaFilm">
-            <columns>
-                <TableColumn fx:id="colTitolo" prefWidth="200.0" text="Titolo"/>
-                <TableColumn fx:id="colRegista" prefWidth="150.0" text="Regista"/>
-                <TableColumn fx:id="colAnno" prefWidth="75.0" text="Anno"/>
-                <TableColumn fx:id="colGenere" prefWidth="120.0" text="Genere"/>
-                <TableColumn fx:id="colStato" prefWidth="100.0" text="Stato"/>
-                <TableColumn fx:id="colValutazione" prefWidth="100.0" text="Valutazione"/>
-            </columns>
-        </TableView>
+        <VBox spacing="10">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+            <children>
+
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <children>
+                        <Label text="Filtra genere:" />
+                        <ComboBox fx:id="filtroGenereBox" prefWidth="140.0" promptText="Tutti i generi" />
+                        <Label text="Filtra stato:" />
+                        <ComboBox fx:id="filtroStatoBox" prefWidth="140.0" promptText="Tutti gli stati"/>
+                        <Label text="Cerca:" />
+                        <TextField fx:id="searchField" HBox.hgrow="ALWAYS" promptText="Cerca per titolo, regista, anno..." />
+                    </children>
+                </HBox>
+
+                <TableView fx:id="tabellaFilm" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colTitolo" prefWidth="200.0" text="Titolo"/>
+                        <TableColumn fx:id="colRegista" prefWidth="150.0" text="Regista"/>
+                        <TableColumn fx:id="colAnno" prefWidth="75.0" text="Anno"/>
+                        <TableColumn fx:id="colGenere" prefWidth="120.0" text="Genere"/>
+                        <TableColumn fx:id="colStato" prefWidth="100.0" text="Stato"/>
+                        <TableColumn fx:id="colValutazione" prefWidth="100.0" text="Valutazione"/>
+                    </columns>
+                </TableView>
+
+            </children>
+        </VBox>
     </center>
 </BorderPane>
