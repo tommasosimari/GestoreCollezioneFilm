@@ -21,8 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class FilmController {
 
@@ -71,47 +70,52 @@ public class FilmController {
         collezione.caricaCollezione();
 
         refreshMasterList();
+        aggiornaTabellaDaCollezione();
 
         //filtri
-        FilteredList<Film> filteredData = new FilteredList<>(masterFilmList, p -> true);
-
-        searchField.textProperty().addListener((observable, oldValue, newValue) ->
-                aggiornaFiltro(filteredData)
-        );
-        filtroGenereBox.valueProperty().addListener((observable, oldValue, newValue) ->
-                aggiornaFiltro(filteredData)
+        filtroGenereBox.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldValue, newValue) -> aggiornaTabellaDaCollezione()
         );
         filtroStatoBox.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> aggiornaFiltro(filteredData)
+                (obs, oldValue, newValue) -> aggiornaTabellaDaCollezione()
         );
-
-
-        SortedList<Film> sortedData = new SortedList<>(filteredData);
-
-        sortedData.comparatorProperty().bind(tabellaFilm.comparatorProperty());
-
-        tabellaFilm.setItems(sortedData);
+        searchField.textProperty().addListener(
+                (obs, oldValue, newValue) -> aggiornaTabellaDaCollezione()
+        );
+        tabellaFilm.setItems(masterFilmList);
     }
 
-    private void aggiornaFiltro(FilteredList<Film> filteredData) {
-        String keyword = searchField.getText().toLowerCase().trim();
-        GenereCinematografico genereSelezionato = filtroGenereBox.getValue();
-        Stato statoSelezionato = filtroStatoBox.getValue();
+    private void aggiornaTabellaDaCollezione() {
 
-        filteredData.setPredicate(film -> {
+        String keyword = searchField.getText().trim().toLowerCase();
+        GenereCinematografico genere = filtroGenereBox.getValue();
+        Stato stato = filtroStatoBox.getValue();
 
-            boolean genereMatch = (genereSelezionato == null) || (film.getGenereCinematografico() == genereSelezionato);
+        List<Film> risultati = new ArrayList<>(collezione.getTuttiIFilm());
 
-            boolean keywordMatch = keyword.isEmpty() ||
-                    film.getTitolo().toLowerCase().contains(keyword) ||
-                    film.getRegista().toLowerCase().contains(keyword) ||
-                    (film.getAnno() != null && film.getAnno().toString().contains(keyword));
+        if (!keyword.isEmpty()) {
+            List<Film> perTitolo = collezione.cercaPerTitolo(keyword);
+            List<Film> perRegista = collezione.cercaPerRegista(keyword);
 
-            boolean statoMatch = (statoSelezionato == null) ||
-                    (film.getStato() == statoSelezionato);
+            Set<Film> unione = new HashSet<>();
+            unione.addAll(perTitolo);
+            unione.addAll(perRegista);
 
-            return genereMatch &&statoMatch && keywordMatch;
-        });
+            try {
+                List<Film> perAnno = collezione.cercaPerAnno(Integer.valueOf(keyword));
+                unione.addAll(perAnno);
+            }catch (NumberFormatException e){
+            }
+
+            risultati.retainAll(unione);
+        }
+        if (genere != null) {
+            risultati.retainAll(collezione.cercaPerGenere(genere));
+        }
+        if (stato != null) {
+            risultati.retainAll(collezione.cercaPerStato(stato));
+        }
+        masterFilmList.setAll(risultati);
     }
 
 
@@ -125,6 +129,7 @@ public class FilmController {
         collezione.setPersistenza("JSON");
         collezione.caricaCollezione();
         refreshMasterList();
+        aggiornaTabellaDaCollezione();
     }
 
     @FXML
@@ -132,6 +137,7 @@ public class FilmController {
         collezione.setPersistenza("JSON");
         collezione.salvaCollezione();
         refreshMasterList();
+        aggiornaTabellaDaCollezione();
     }
 
     @FXML
@@ -139,6 +145,7 @@ public class FilmController {
         collezione.setPersistenza("CSV");
         collezione.caricaCollezione();
         refreshMasterList();
+        aggiornaTabellaDaCollezione();
     }
 
     @FXML
@@ -146,6 +153,7 @@ public class FilmController {
         collezione.setPersistenza("CSV");
         collezione.salvaCollezione();
         refreshMasterList();
+        aggiornaTabellaDaCollezione();
     }
 
     //ordinamento
@@ -200,6 +208,7 @@ public class FilmController {
                     collezione.aggiungiFilm(nuovoFilm);
                     collezione.salvaCollezione();
                     refreshMasterList();
+                    aggiornaTabellaDaCollezione();
                 }
             }
         } catch (IOException e) {
@@ -233,6 +242,7 @@ public class FilmController {
             if (controller.isOkClicked()) {
                 collezione.salvaCollezione();
                 refreshMasterList();
+                aggiornaTabellaDaCollezione();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -247,6 +257,7 @@ public class FilmController {
             collezione.rimuoviFilm(filmSelezionato);
             collezione.salvaCollezione();
             refreshMasterList();
+            aggiornaTabellaDaCollezione();
         } else {
             showAlertAvviso("Nessuna selezione", "Per favore, seleziona un film da rimuovere.");
         }

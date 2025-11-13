@@ -109,7 +109,7 @@ public class CollezioneFilm {
     public List<Film> cercaPerTitolo(String titolo) {
         List<Film> filmPerTitolo = new ArrayList<>();
         for (Film film : ListaFilm) {
-            if (film.getTitolo().equalsIgnoreCase(titolo)) {
+            if (film.getTitolo().trim().toLowerCase().contains(titolo)) {
                 filmPerTitolo.add(film);
             }
         }
@@ -139,7 +139,7 @@ public class CollezioneFilm {
     public List<Film> cercaPerRegista(String regista) {
         List<Film> filmPerRegista = new ArrayList<>();
         for (Film film : ListaFilm) {
-            if (film.getRegista().equalsIgnoreCase(regista)) {
+            if (film.getRegista().trim().toLowerCase().contains(regista)) {
                 filmPerRegista.add(film);
             }
         }
